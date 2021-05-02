@@ -21,15 +21,13 @@ const SmurfList = (props) => {
   }
   return (
     <div className="listContainer">
-      <ul>
-        {props.smurfs.map((smurf) => {
-          return (
-            <li>
-              <Smurf key={smurf.id} smurf={smurf} />{" "}
-            </li>
-          );
-        })}
-      </ul>
+      {props.smurfs.map((smurf) => {
+        return (
+          <div key={smurf.id}>
+            <Smurf key={smurf.id} smurf={smurf} />
+          </div>
+        );
+      })}
     </div>
   );
 };
