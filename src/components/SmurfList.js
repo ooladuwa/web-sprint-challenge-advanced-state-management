@@ -14,19 +14,13 @@ const SmurfList = (props) => {
       "Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.",
   };
 
-  console.log(props.smurfs);
-
   if (props.isLoading) {
     return <h1>Loading...</h1>;
   }
   return (
     <div className="listContainer">
       {props.smurfs.map((smurf) => {
-        return (
-          <div key={smurf.id}>
-            <Smurf key={smurf.id} smurf={smurf} />
-          </div>
-        );
+        return <Smurf key={smurf.id} smurf={smurf} />;
       })}
     </div>
   );
@@ -40,7 +34,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SmurfList);
+export default connect(mapStateToProps, {})(SmurfList);
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.

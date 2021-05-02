@@ -20,18 +20,13 @@ const AddForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.name === "" || state.position === "" || state.nickname === "") {
-      state.errorMessage = "Name, position and nickname fields are required.";
-    }
-    {
+      // state.errorMessage = "Name, position and nickname fields are required.";
       props.setError();
-    }
-
-    {
       props.addSmurf(state);
     }
   };
 
-  const errorMessage = "";
+  // const errorMessage = "";
 
   return (
     <section>
@@ -77,13 +72,13 @@ const AddForm = (props) => {
             id="description"
           />
         </div>
-        {errorMessage && (
+        {props.error && (
           <div
             data-testid="errorAlert"
             className="alert alert-danger"
             role="alert"
           >
-            Error: {errorMessage}
+            Error: {props.error}
           </div>
         )}
         <button>Submit Smurf</button>

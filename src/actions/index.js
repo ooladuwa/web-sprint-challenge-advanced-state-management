@@ -14,7 +14,7 @@ export const fetchSmurfs = () => {
       .get("http://localhost:3333/smurfs")
       // if happy path, happy action
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({ type: FETCHING_SUCCESS, payload: res.data });
       })
       // if sad path, sad action

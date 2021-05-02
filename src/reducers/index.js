@@ -7,7 +7,15 @@ import {
 } from "../actions/index";
 
 const initialState = {
-  smurfs: [],
+  smurfs: [
+    {
+      name: "",
+      nickname: "",
+      position: "",
+      description: "",
+      id: Date.now(),
+    },
+  ],
   isLoading: false,
   error: "",
 };
@@ -27,22 +35,24 @@ export const smurfsReducer = (state = initialState, action) => {
     case ADD_SMURF:
       return {
         ...state,
-        smurf: [
-          ...state.smurf,
-          state.name,
-          state.nickname,
-          state.position,
-          state.summary,
-          state.id,
+        smurfs: [
+          {
+            ...state.smurfs,
+            name: action.payload.name,
+            position: action.payload.position,
+            nickname: action.payload.nickname,
+            description: action.payload.description,
+            id: action.payload.id,
+          },
         ],
         isLoading: false,
       };
     case SET_ERROR:
       return {
         ...state,
-        smurf: [],
+        smurfs: [],
         isLoading: false,
-        error: state.errorMessage,
+        error: "Name, position, and nickname are required for smurfs.",
       };
     default:
       return state;
