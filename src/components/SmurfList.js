@@ -25,7 +25,6 @@ const SmurfList = (props) => {
         {props.smurfs.map((smurf) => {
           return (
             <li>
-              {" "}
               <Smurf key={smurf.id} smurf={smurf} />{" "}
             </li>
           );

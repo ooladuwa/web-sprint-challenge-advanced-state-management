@@ -20,7 +20,11 @@ const AddForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.name === "" || state.position === "" || state.nickname === "") {
-      state.errorMessage = "Name, position and nickname fields are required.";
+      // state.errorMessage = "Name, position and nickname fields are required.";
+      props.setError();
+    }
+    {
+      props.addSmurf(state);
     }
   };
 
@@ -85,8 +89,10 @@ const AddForm = (props) => {
   );
 };
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return {
+    error: state.error,
+  };
 };
 
 export default connect(mapStateToProps, { setError, addSmurf })(AddForm);

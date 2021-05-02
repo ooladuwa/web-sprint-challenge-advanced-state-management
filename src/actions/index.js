@@ -7,7 +7,6 @@ export const ADD_SMURF = "ADD_SMURF";
 export const SET_ERROR = "SET_ERROR";
 
 export const fetchSmurfs = () => {
-  console.log(fetchSmurfs);
   //start a fetch
   return (dispatch) => {
     dispatch({ type: FETCHING_START });
