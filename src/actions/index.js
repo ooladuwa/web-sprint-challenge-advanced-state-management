@@ -6,21 +6,24 @@ export const FETCHING_FAILURE = "FETCHING_FAILURE";
 export const ADD_SMURF = "ADD_SMURF";
 export const SET_ERROR = "SET_ERROR";
 
-export const fetchSmurf = () => {
+export const fetchSmurfs = () => {
+  console.log(fetchSmurfs);
   //start a fetch
-  dispatchEvent({ type: FETCHING_START });
-  axios
-    .get("http://localhost:3333/smurfs")
-    // if happy path, happy action
-    .then((res) => {
-      console.log(res.data);
-      dispatchEvent({ type: FETCHING_SUCCESS, payload: res.data });
-    })
-    // if sad path, sad action
-    .catch((error) => {
-      console.log(error);
-      dispatchEvent({ type: FETCHING_FAILURE, payload: error });
-    });
+  return (dispatch) => {
+    dispatch({ type: FETCHING_START });
+    axios
+      .get("http://localhost:3333/smurfs")
+      // if happy path, happy action
+      .then((res) => {
+        console.log(res.data);
+        dispatch({ type: FETCHING_SUCCESS, payload: res.data });
+      })
+      // if sad path, sad action
+      .catch((error) => {
+        console.log(error);
+        dispatch({ type: FETCHING_FAILURE, payload: error.errorMessage });
+      });
+  };
 };
 
 export const addSmurf = (newSmurf) => {
@@ -32,7 +35,7 @@ export const addSmurf = (newSmurf) => {
 
 export const setError = (errorMessage) => {
   return {
-    type: ADD_SMURF,
+    type: SET_ERROR,
     payload: errorMessage,
   };
 };
