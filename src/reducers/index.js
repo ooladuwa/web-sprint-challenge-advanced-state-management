@@ -36,8 +36,8 @@ export const smurfsReducer = (state = initialState, action) => {
       return {
         ...state,
         smurfs: [
+          ...state.smurfs,
           {
-            ...state.smurfs,
             name: action.payload.name,
             position: action.payload.position,
             nickname: action.payload.nickname,

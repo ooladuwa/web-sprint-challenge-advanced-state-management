@@ -25,17 +25,33 @@ export const fetchSmurfs = () => {
   };
 };
 
-export const addSmurf = (newSmurf) => {
-  return {
-    type: ADD_SMURF,
-    payload: newSmurf,
-  };
+// export const addSmurf = (newSmurf) => {
+//   return {
+//     type: ADD_SMURF,
+//     payload: newSmurf,
+//   };
+// };
+
+export const addSmurf = (smurf) => (dispatch) => {
+  dispatch({ type: FETCHING_START });
+  axios
+    .post("http://localhost:3333/smurfs", smurf)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: ADD_SMURF, payload: smurf });
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch({ type: SET_ERROR });
+    });
 };
 
-export const setError = () => {
-  return {
-    type: SET_ERROR,
-    // payload: errorMessage,
+export const setError = (errorMessage) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_ERROR,
+      payload: errorMessage,
+    });
   };
 };
 
