@@ -32,16 +32,18 @@ export const fetchSmurfs = () => {
 //   };
 // };
 
-export const addSmurf = (smurfs) => (dispatch) => {
-  dispatch({ type: FETCHING_START, payload: { ...smurfs } });
+export const addSmurf = (smurf) => (dispatch) => {
+  // dispatch({ type: FETCHING_START });
   axios
-    .post("http://localhost:3333/smurfs", smurfs)
+    .post("http://localhost:3333/smurfs", smurf)
     .then((res) => {
       console.log(res);
-      dispatch({ type: ADD_SMURF, payload: smurfs });
+      dispatch({ type: ADD_SMURF, payload: res.data });
     })
+
     .then((res) => {
-      dispatch({ type: FETCHING_SUCCESS, payload: res.data, ...smurfs });
+      console.log(smurf.data);
+      dispatch({ type: FETCHING_SUCCESS, payload: res.data, ...smurf });
     })
     .catch((error) => {
       console.log(error);
