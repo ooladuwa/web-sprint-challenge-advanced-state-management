@@ -20,7 +20,8 @@ const SmurfList = (props) => {
   return (
     <div className="listContainer">
       {props.smurfs.map((smurf) => {
-        return <Smurf key={props.id} smurf={smurf} />;
+        // console.log(smurf.id);
+        return <Smurf key={smurf.id} smurf={smurf} />;
       })}
     </div>
   );

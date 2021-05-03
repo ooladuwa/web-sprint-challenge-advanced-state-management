@@ -8,6 +8,7 @@ const AddForm = (props) => {
     position: "",
     nickname: "",
     description: "",
+    id: "",
   });
 
   const handleChange = (e) => {

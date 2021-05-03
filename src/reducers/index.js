@@ -47,12 +47,13 @@ export const smurfsReducer = (state = initialState, action) => {
         ],
         isLoading: false,
       };
+
     case SET_ERROR:
       return {
         ...state,
         smurfs: [],
         isLoading: false,
-        error: "Name, position, and nickname are required for smurfs.",
+        error: "Name, position, and nickname are required to add a smurf.",
       };
     default:
       return state;
