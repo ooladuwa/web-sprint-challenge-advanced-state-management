@@ -2,19 +2,19 @@ import {
   FETCHING_START,
   FETCHING_SUCCESS,
   FETCHING_FAILURE,
-  ADD_SMURF,
+  // ADD_SMURF,
   SET_ERROR,
 } from "../actions/index";
 
 const initialState = {
   smurfs: [
-    {
-      name: "",
-      nickname: "",
-      position: "",
-      description: "",
-      id: Date.now(),
-    },
+    //   {
+    //     name: "",
+    //     nickname: "",
+    //     position: "",
+    //     description: "",
+    //     id: Date.now(),
+    //   },
   ],
   isLoading: false,
   error: "",
@@ -26,27 +26,28 @@ export const smurfsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case FETCHING_START:
-      return { ...state, smurfs: [], isLoading: true };
+      return { ...state, isLoading: true };
     case FETCHING_SUCCESS:
       return { ...state, isLoading: false, smurfs: action.payload };
     case FETCHING_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
 
-    case ADD_SMURF:
-      return {
-        ...state,
-        smurfs: [
-          ...state.smurfs,
-          {
-            name: action.payload.name,
-            position: action.payload.position,
-            nickname: action.payload.nickname,
-            description: action.payload.description,
-            id: action.payload.id,
-          },
-        ],
-        isLoading: false,
-      };
+    // case ADD_SMURF:
+    //   return {
+    //     ...state,
+    //     smurfs: [
+    //       ...state.smurfs,
+    //       state.newSmurf,
+    // {
+    //   name: action.payload.name,
+    //   position: action.payload.position,
+    //   nickname: action.payload.nickname,
+    //   description: action.payload.description,
+    //   id: action.payload.id,
+    // },
+    //   ],
+    //   isLoading: false,
+    // };
 
     case SET_ERROR:
       return {

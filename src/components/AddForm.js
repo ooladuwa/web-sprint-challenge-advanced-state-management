@@ -21,10 +21,24 @@ const AddForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.name === "" || state.position === "" || state.nickname === "") {
-      // state.errorMessage = "Name, position and nickname fields are required.";
       props.setError();
     } else {
-      props.addSmurf(state);
+      const newSmurf = {
+        name: state.name,
+        nickname: state.nickname,
+        position: state.position,
+        description: state.description,
+        id: Date.now(),
+      };
+
+      props.addSmurf(newSmurf);
+      setState({
+        name: "",
+        position: "",
+        nickname: "",
+        description: "",
+        error: "",
+      });
     }
   };
 
@@ -91,11 +105,15 @@ const AddForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    smurfs: state.smurfs,
     error: state.error,
+    isLoading: state.isLoading,
   };
 };
 
-export default connect(mapStateToProps, { setError, addSmurf })(AddForm);
+const mapDispatchToProps = { addSmurf, setError };
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.

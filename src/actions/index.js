@@ -6,24 +6,24 @@ export const FETCHING_FAILURE = "FETCHING_FAILURE";
 export const ADD_SMURF = "ADD_SMURF";
 export const SET_ERROR = "SET_ERROR";
 
-export const fetchSmurfs = () => {
+export const fetchSmurfs = () => (dispatch) => {
   //start a fetch
-  return (dispatch) => {
-    dispatch({ type: FETCHING_START });
-    axios
-      .get("http://localhost:3333/smurfs")
-      // if happy path, happy action
-      .then((res) => {
-        // console.log(res.data);
-        dispatch({ type: FETCHING_SUCCESS, payload: res.data });
-      })
-      // if sad path, sad action
-      .catch((error) => {
-        console.log(error);
-        dispatch({ type: FETCHING_FAILURE, payload: error.errorMessage });
-      });
-  };
+  // return (dispatch) => {
+  dispatch({ type: "FETCHING_START" });
+  axios
+    .get("http://localhost:3333/smurfs")
+    // if happy path, happy action
+    .then((res) => {
+      // console.log(res.data);
+      dispatch({ type: "FETCHING_SUCCESS", payload: res.data });
+    })
+    // if sad path, sad action
+    .catch((error) => {
+      console.log(error);
+      dispatch({ type: "FETCHING_FAILURE", payload: error.errorMessage });
+    });
 };
+// };
 
 // export const addSmurf = (newSmurf) => {
 //   return {
@@ -33,28 +33,28 @@ export const fetchSmurfs = () => {
 // };
 
 export const addSmurf = (smurf) => (dispatch) => {
-  // dispatch({ type: FETCHING_START });
+  dispatch({ type: FETCHING_START });
   axios
     .post("http://localhost:3333/smurfs", smurf)
-    .then((res) => {
-      console.log(res);
-      dispatch({ type: ADD_SMURF, payload: res.data });
-    })
+    // .then((res) => {
+    //   console.log(res);
+    //   dispatch({ type: "ADD_SMURF", payload: res.data });
+    // })
 
     .then((res) => {
-      console.log(smurf.data);
-      dispatch({ type: FETCHING_SUCCESS, payload: res.data, ...smurf });
+      console.log(res.data);
+      dispatch({ type: "FETCHING_SUCCESS", payload: res.data });
     })
     .catch((error) => {
       console.log(error);
-      dispatch({ type: FETCHING_FAILURE, payload: error.errorMessage });
+      dispatch({ type: "FETCHING_FAILURE", payload: error.setError });
     });
 };
 
 export const setError = (errorMessage) => {
   return (dispatch) => {
     dispatch({
-      type: SET_ERROR,
+      type: "SET_ERROR",
       payload: errorMessage,
     });
   };
